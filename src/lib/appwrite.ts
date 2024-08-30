@@ -1,4 +1,4 @@
-import { Client, Databases } from "node-appwrite"
+import { Client, Databases, Query } from "node-appwrite"
 import { toCamelCase } from "@lib/helpers";
 import lookup from "country-code-lookup";
 import type { Flight } from "@src/types";
@@ -19,7 +19,10 @@ const databases = new Databases(client);
 const getAllFlights = async (): Promise<Flight[]> => {
     const response = await databases.listDocuments(
         FLYDAR_DATABASE_ID,
-        FLYDAR_ONEWAYS
+        FLYDAR_ONEWAYS,
+        [
+            Query.limit(5000)
+        ]
     );
 
     const flights: Flight[] = [];

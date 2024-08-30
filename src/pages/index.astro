@@ -1,5 +1,5 @@
 ---
-import { getAllFlights } from "@lib/appwrite-public";
+import { getAllFlights } from "@src/lib/appwrite"
 import Layout from "@src/layouts/Layout.astro";
 import FlightTable from "@components/FlightTable.svelte";
 
@@ -8,12 +8,19 @@ const flights = await getAllFlights();
 
 <Layout title="Flydar - Flight Aggregator">
     <div class="w-9/12 mx-auto">
-        <div class="flex flex-col">
-            <div class="text-center pt-6">
+        <div class="flex flex-col space-y-5">
+            <div class="text-center">
                 <h1 class="text-5xl dark:text-gray-200 text-gray-800 font-extrabold italic">Flydar</h1>
                 <p class="text-xl dark:text-gray-200 text-gray-800"></p>
             </div>
-            <FlightTable flightData={flights} client:load />
+            <div class="flex flex-col space-y-4">
+                <p class="text-xl dark:text-gray-200 text-gray-800">
+                    Showing you the first 5000 results, to access more data.
+                </p>
+                <div class="">
+                    <FlightTable flightData={flights} client:load />
+                </div>
+            </div>
         </div>
     </div>
 </Layout>

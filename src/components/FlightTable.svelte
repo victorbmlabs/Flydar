@@ -6,20 +6,20 @@
 
     export let flightData: Flight[];
     const handler = new DataHandler(flightData, { rowsPerPage: 20 });
-    const rows = handler.getRows();
+    const rows = handler.getAllRows();
 </script>
 
 <div class="overflow-x-auto">
-    <!-- <header>
+    <header>
         <Search {handler} />
-    </header> -->
+    </header>
     <table class="table table-auto w-full">
         <thead class="bg-gray-900">
             <tr class="text-2xl text-gray-800 dark:text-gray-200">
                 <ThSort {handler} orderBy="originCity">Origin</ThSort>
                 <ThSort {handler} orderBy="destinationCity">Destination</ThSort>
                 <ThSort {handler} orderBy="departureTime"
-                    >Departure time</ThSort
+                    >Departure</ThSort
                 >
                 <ThSort {handler} orderBy="price">Price</ThSort>
                 <ThSort {handler} orderBy="airline">Airline</ThSort>
@@ -35,10 +35,9 @@
                             .iso2}</td
                     >
                     <td class="p-2"
-                        >{row.departureTime.toLocaleDateString("en-US", {
-                            weekday: "long",
+                        >{row.departureTime.toLocaleDateString("en-GB", {
                             year: "numeric",
-                            month: "long",
+                            month: "numeric",
                             day: "numeric",
                         })}</td
                     >
